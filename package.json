@@ -1,0 +1,55 @@
+{
+  "name": "neersetu-water-monitoring",
+  "version": "1.0.0",
+  "description": "Smart Water Quality Monitoring and Health Surveillance System for Rural Communities",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:dashboard\" \"npm run start:web\" \"npm run start:ml\" \"npm run start:iot\" \"npm run start:mobile\"",
+    "start:dashboard": "cd dashboard && npm start",
+    "start:web": "cd neersetu-web && PORT=3001 npm start",
+    "start:ml": "cd ml-service && python -m uvicorn src.enhanced_api:app --reload --port 8000",
+    "start:iot": "cd iot-simulator && python enhanced_iot_simulator.py",
+    "start:mobile": "cd mobile-app && npx expo start --web --port 19006",
+    "install:all": "npm run install:dashboard && npm run install:web && npm run install:mobile && npm run install:ml && npm run install:iot",
+    "install:dashboard": "cd dashboard && npm install",
+    "install:web": "cd neersetu-web && npm install",
+    "install:mobile": "cd mobile-app && npm install",
+    "install:ml": "cd ml-service && pip install -r requirements.txt",
+    "install:iot": "cd iot-simulator && pip install -r requirements.txt",
+    "build": "npm run build:dashboard && npm run build:web",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build:web": "cd neersetu-web && npm run build",
+    "test": "echo \"No tests specified\"",
+    "lint": "cd dashboard && npm run lint",
+    "clean": "rm -rf node_modules */node_modules */*/node_modules */*/__pycache__ */*/build */*/dist"
+  },
+  "keywords": [
+    "water-quality",
+    "health-monitoring",
+    "iot",
+    "machine-learning",
+    "react",
+    "python",
+    "hackathon",
+    "rural-health",
+    "smart-villages",
+    "neersetu"
+  ],
+  "author": "NeerSetu Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neersetu/water-monitoring-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neersetu/water-monitoring-system/issues"
+  },
+  "homepage": "https://github.com/neersetu/water-monitoring-system#readme"
+}
